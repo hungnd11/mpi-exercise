@@ -1,2 +1,2 @@
 # mpi-exercise
-MPI long exercise
+My MPI long exercise
