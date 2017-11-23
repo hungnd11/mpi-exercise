@@ -12,7 +12,3 @@ build/sieve_parallel:
 
 clean:
 	rm -f ${EXECS}
-
-run:
-	./build/sieve_serial
-	mpirun -np 2 ./build/sieve_parallel_initial
