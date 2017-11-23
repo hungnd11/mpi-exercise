@@ -71,7 +71,8 @@ double
 time_of_sieve(long size)
 {
 	clock_t tic = clock();
-	long func = run_sieve(size, false);
+	long count = run_sieve(size, false);
+	printf("%ld primes are less than or equal to %ld\n", count, size);
 	clock_t toc = clock();
 
 	return (double) (toc - tic) / CLOCKS_PER_SEC;
@@ -79,9 +80,9 @@ time_of_sieve(long size)
 
 
 /* Measure the average time of sieve in a number of runs
- * :param: n_runs: the number of runs
- * :param: size: size of sieve
- * :return: the average time measured in 'n_runs' runs
+ *   n_runs: the number of runs
+ *   size: size of sieve
+ *   return: the average time measured in 'n_runs' runs
  */
 double
 avg_time(int size, int n_runs)
@@ -113,7 +114,7 @@ main(int argc, char const *argv[])
 
 	long n = atoi(argv[1]);
 	
-	printf("\nEllapsed time %f\n", avg_time(n, 100));
+	printf("\nEllapsed time %f\n", time_of_sieve(n));
 
 	return 0;
 }
