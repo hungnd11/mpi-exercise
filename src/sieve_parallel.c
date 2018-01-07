@@ -18,10 +18,15 @@
 #include <stdlib.h>
 #include "blockdecomp.h"
 
+/* Return the index of the first element in the block
+ * param: prime_: the given prime number
+ * param: low_value_: the lowest value of the block
+ * return: the index of the first element in the block
+ */
 int
 get_first_elem(int prime_, int low_value_)
 {
-	int first_; 
+	int first_;
 	
 	if(prime_ * prime_ > low_value_)
 		first_ = prime_ * prime_ - low_value_;
@@ -68,7 +73,11 @@ main(int argc, char *argv[])
 	// and the process has not been given id yet
 	if(argc != 2)
 	{
-		if(!id) printf("Command line: %s <m>\n", argv[0]);
+		if(!id) 
+		{
+			printf("Command line: %s <m>\n", argv[0]);
+			printf("You must provide the upper bound to find prime numbers.\n");
+		}
 		MPI_Finalize();
 		exit(1);
 	}
