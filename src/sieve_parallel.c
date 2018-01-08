@@ -1,6 +1,6 @@
 /*
  * ===================================================================================== 
- *       Filename:  sieve_parallel_initial.c
+ *       Filename:  sieve_parallel.c
  *
  *    Description:  Implement Sieve of Eratosthenes parallel algorithm
  *
