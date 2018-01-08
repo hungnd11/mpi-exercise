@@ -23,8 +23,7 @@
  * param: low_value_: the lowest value of the block
  * return: the index of the first element in the block
  */
-int
-get_first_elem(int prime_, int low_value_)
+int get_first_elem(int prime_, int low_value_)
 {
 	int first_;
 	
@@ -41,22 +40,21 @@ get_first_elem(int prime_, int low_value_)
 	return first_;
 }
 
-int 
-main(int argc, char *argv[])
+int main(int argc, char *argv[])
 {
 	int 		count;  			// local prime count
-	double 	elapsed_time; // parallel execution time 
+	double 		elapsed_time; 		// parallel execution time 
 	int 		first; 				// index of the first multiple
-	int 		global_count; // global prime count 
-	int 		high_value; 	// highest value on this process
+	int 		global_count; 		// global prime count 
+	int 		high_value; 		// highest value on this process
 	int 		i;
-	int 		id; 					// process ID number
+	int 		id; 				// process ID number
 	int 		index; 				// index of current prime 
-	int 		low_value; 		// lowest value on this process
+	int 		low_value; 			// lowest value on this process
 	char 		*marked; 			// portion of 2,..., 'n'
-	int 		n; 						// sieving from 2,..., 'n'
-	int 		p; 						// number of processes
-	int 		proc0_size; 	// size of process 0's subarray
+	int 		n; 					// sieving from 2,..., 'n'
+	int 		p; 					// number of processes
+	int 		proc0_size; 		// size of process 0's subarray
 	int 		prime; 				// current prime
 	int 		size; 				// elements in the marked
 
@@ -75,8 +73,7 @@ main(int argc, char *argv[])
 	{
 		if(!id) 
 		{
-			printf("Command line: %s <m>\n", argv[0]);
-			printf("You must provide the upper bound to find prime numbers.\n");
+			printf("Usage: sieve_parallel <n>\n");
 		}
 		MPI_Finalize();
 		exit(1);
@@ -96,7 +93,10 @@ main(int argc, char *argv[])
 
 	if((2 + proc0_size) < (int) sqrt((double) n))
 	{
-		if(!id) printf("Too many processes.\n");		
+		if(!id) 
+		{
+			printf("Too many processes.\n");
+		}
 		MPI_Finalize();
 		exit(1);
 	}
@@ -156,6 +156,9 @@ main(int argc, char *argv[])
 		printf("%d primes are less than or equal to %d\n", global_count, n);
 		printf("Total elapsed time: %10.6f\n", elapsed_time);
 	}
+
+	free(marked);
+	marked = 0;
 
 	MPI_Finalize();
 	
